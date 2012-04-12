@@ -133,10 +133,42 @@ public class Logger {
     	}
     }
 
+    public void trace(Throwable e) {
+    	if(logger.isTraceEnabled()) {
+    		logger.fatal(e);
+    	}
+    }
+
+    
+    public void info(Throwable e) {
+    	if(logger.isEnabledFor(Priority.INFO)) {
+    		logger.fatal(e);
+    	}
+    }
+    
+    public void debug(Throwable e) {
+    	if(logger.isEnabledFor(Priority.DEBUG)) {
+    		logger.fatal(e);
+    	}
+    }
 
 
     
+    public void warn(Throwable e) {
+    	if(logger.isEnabledFor(Priority.WARN)) {
+    		logger.warn(e);
+    	}
+    }
     
+    public void fatal(Throwable e) {
+    	if(logger.isEnabledFor(Priority.FATAL)) {
+    		logger.fatal(e);
+    	}
+    }
+
+	public boolean isWarnEnabled() {
+		return logger.isEnabledFor(Priority.WARN);
+	}
     
 
 }
