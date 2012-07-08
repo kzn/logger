@@ -1,4 +1,4 @@
-package ru.iitp.cl.logger;
+package name.kazennikov.logger;
 
 import org.apache.log4j.Priority;
 import org.apache.log4j.spi.LoggerFactory;
