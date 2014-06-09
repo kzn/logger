@@ -111,6 +111,12 @@ public class Logger {
     	}
     }
     
+    public void error(Throwable e) {
+    	if(logger.isEnabledFor(Priority.ERROR)) {
+    		logger.error(e);
+    	}
+    }
+    
     public void error(String format, Object...objects) {
     	if(logger.isEnabledFor(Priority.ERROR))
     		logger.error(String.format(format, objects));
@@ -122,7 +128,7 @@ public class Logger {
     	}
     }
     
-        public void fatal(String format, Object...objects) {
+    public void fatal(String format, Object...objects) {
     	if(logger.isEnabledFor(Priority.FATAL))
     		logger.fatal(String.format(format, objects));
     }
