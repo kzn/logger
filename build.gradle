@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+if(project.hasProperty('standalone')) {
+    group = 'name.kazennikov'
+    description = "logger"
+    version = '0.0.1-SNAPSHOT'
+
+}
+
+
+repositories {
+
+    mavenCentral()
+}
+
+dependencies {
+    compile 'log4j:log4j:1.2.16'
+}
