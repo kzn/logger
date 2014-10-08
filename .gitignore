@@ -1,2 +1,8 @@
 bin
 target
+/build/
+.classpath
+.project
+.idea
+logger.iml
+.settings
