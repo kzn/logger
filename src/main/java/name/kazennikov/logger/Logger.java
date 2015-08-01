@@ -4,7 +4,8 @@ import org.apache.log4j.Priority;
 import org.apache.log4j.spi.LoggerFactory;
 
 /**
- * Thin wrapper on log4j Logger class
+ * Thin wrapper over log4j Logger class for printf-like logging
+ *
  * @author Anton Kazennikov
  *
  */
@@ -175,6 +176,20 @@ public class Logger {
 	public boolean isWarnEnabled() {
 		return logger.isEnabledFor(Priority.WARN);
 	}
+
+	public void printf(Priority priority, String message, Object... args) {
+		if(logger.isEnabledFor(priority)) {
+			logger.log(priority, String.format(message, args));
+		}
+	}
+
+	public void printf(Priority priority, String message, Throwable e, Object... args) {
+		if(logger.isEnabledFor(priority)) {
+			logger.log(priority, String.format(message, args), e);
+		}
+	}
+
+
     
 
 }
