@@ -10,7 +10,7 @@ import org.apache.log4j.spi.LoggerFactory;
  *
  */
 public class Logger {
-	org.apache.log4j.Logger logger;
+	protected final org.apache.log4j.Logger logger;
 	
 	private Logger() {
 		logger = org.apache.log4j.Logger.getLogger(getCallerClassName());
