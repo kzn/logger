@@ -1,11 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'signing'
 
 if(project.hasProperty('standalone')) {
     group = 'name.kazennikov'
     description = "logger"
-    version = '0.0.1-SNAPSHOT'
-
+    version = '0.0.1'
 }
 
 
@@ -16,4 +16,53 @@ repositories {
 
 dependencies {
     compile "log4j:log4j:$log4jVersion"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+
+
+task pom << {
+    pom {
+        project {
+            name "${project.name}"
+            description "${project.description}"
+            url "http://github.com/kzn/logger"
+            licenses {
+                license {
+                    name 'GNU LESSER GENERAL PUBLIC LICENSE v3.0'
+                    url 'http://www.gnu.org/licenses/lgpl-3.0.en.html'
+                    distribution 'repo'
+                }
+            }
+
+            scm {
+                url "http://github.com/kzn/logger"
+            }
+
+            developers {
+                developer {
+                    name 'Anton Kazennikov'
+                    email 'kazennikov@gmail.com'
+                }
+            }
+        }
+    }.writeTo(new File(buildDir, "libs/${project.description}-${version}.pom"))
 }
